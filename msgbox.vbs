@@ -3,7 +3,7 @@ Function BrowseForFile( dialogText )
 
   set fso = CreateObject("Scripting.FileSystemObject")
   CurrentDirectory = fso.GetAbsolutePathName(".")
-  sFilter = "json files (*.json)" 
+  sFilter = "json files (*.json)|" 
 
   file = GetFileDlgEx(Replace(CurrentDirectory,"\","\\"),sFilter,dialogText) 
 
