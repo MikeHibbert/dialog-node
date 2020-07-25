@@ -1,6 +1,7 @@
 Function BrowseForFile( dialogText,  )
   Dim shell : Set shell = CreateObject("Shell.Application")
-  Dim file : Set file = shell.BrowseForFolder(0, dialogText, &H4000)
+  Dim ssfWINDOWS
+  Dim file : Set file = shell.BrowseForFolder(0, dialogText, &H4000, ssfWINDOWS)
   BrowseForFile = file.self.Path
 End Function
 
