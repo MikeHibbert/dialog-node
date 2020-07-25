@@ -1,6 +1,6 @@
 Function BrowseForFile( dialogText )
   Set oShell = CreateObject("WScript.Shell")
-  strHomeFolder = oShell.ExpandEnvironmentStrings("%USERPROFILE%") + "\"
+  strHomeFolder = oShell.ExpandEnvironmentStrings("%USERPROFILE%") & "\"
   sFilter = "json files (*.json)|" 
 
   file = GetFileDlgEx(Replace(strHomeFolder,"\","\\"),sFilter,dialogText) 
