@@ -1,11 +1,12 @@
 Function BrowseForFile( dialogText )
  
 
-  set fso = CreateObject("Scripting.FileSystemObject")
-  CurrentDirectory = fso.GetAbsolutePathName(".")
+  Const ssfPROFILE = &H28
+  Set oShell = CreateObject("Shell.Application")
+  strHomeFolder = oShell.NameSpace(ssfPROFILE).Self.Path
   sFilter = "json files (*.json)|" 
 
-  file = GetFileDlgEx(Replace(CurrentDirectory,"\","\\"),sFilter,dialogText) 
+  file = GetFileDlgEx(Replace(strHomeFolder,"\","\\"),sFilter,dialogText) 
 
   BrowseForFile = file
 End Function
