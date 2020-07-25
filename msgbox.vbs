@@ -1,15 +1,12 @@
-Function BrowseForFile( dialogText,  )
-  Dim shell : Set shell = CreateObject("Shell.Application")
-  Dim ssfWINDOWS
-  Dim file : Set file = shell.BrowseForFolder(0, dialogText, &H4000, ssfWINDOWS)
-  BrowseForFile = file.self.Path
+Function BrowseForFile( dialogText )
+ 
 
   set fso = CreateObject("Scripting.FileSystemObject")
   CurrentDirectory = fso.GetAbsolutePathName(".")
   sFilter = "json files (*.json)" 
 
   file = GetFileDlgEx(Replace(CurrentDirectory,"\","\\"),sFilter,dialogText) 
-  
+
   BrowseForFile = file
 End Function
 
