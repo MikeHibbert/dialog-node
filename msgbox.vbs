@@ -18,7 +18,7 @@ Function BrowseForFolder( dialogText )
   Dim shell : Set shell = CreateObject("Shell.Application")
   Dim file : Set file = shell.BrowseForFolder(0, dialogTitle, &H4000)
   BrowseForFile = file.self.Path
-End Function	End Function
+End Function
 
 
 Set objArgs = WScript.Arguments
