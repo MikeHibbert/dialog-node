@@ -17,7 +17,7 @@ End Function
 Function BrowseForFolder( dialogText )
   Dim shell : Set shell = CreateObject("Shell.Application")
   Dim file : Set file = shell.BrowseForFolder(0, dialogTitle, &H4000)
-  BrowseForFolder = file.self.Path
+  BrowseForFolder = Replace(file.self.Path, "\r\n", "")
 End Function
 
 
