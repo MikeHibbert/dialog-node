@@ -402,6 +402,60 @@ var dialogNode = module.exports = {
     this.run(cmd, cb, callback);
   },
 
+  folderselect: function( str, title, timeout, callback){
+    this.init();
+    if( OS === "linux")
+    {
+      str = str.replace(/[<>]/g, '');
+      cmd.push('zenity');
+      cmd.push('--file-selection');
+      cmd.push('--text') && cmd.push(str);
+      cmd.push('--title') && cmd.push(title);
+      cmd.push('--timeout') && cmd.push(timeout);
+      if (str.length > 30) cmd.push('--width') && cmd.push('300');
+      cb = function(code, stdout, stderr){
+        //remove line ending
+        retVal = stdout.slice(0,-1);
+        if(callback)
+          callback(code, retVal, stderr);
+      }
+    }
+    else if( OS === "darwin")
+    {
+      str = str.replace(/"/g, "'"); // double quotes to single quotes
+      cmd.push('osascript') && cmd.push('-e');
+
+      var script = 'set theDocument to choose file with prompt "' + str + '"';
+      cmd.push(script);
+
+      cb = function(code, stdout, stderr){
+        //parse return from appl script code
+        var findstr = "text returned:";
+        retVal = stdout.slice(stdout.indexOf("text returned:") + findstr.length, -1);
+
+        if(callback)
+          callback(code, retVal, stderr);
+      }
+    }
+    else if (OS === "win32")
+    {
+      cmd.push('cscript');
+      cmd.push('//Nologo');
+      cmd.push('msgbox.vbs')
+      cmd.push('folderselect');
+      cmd.push(title);
+      cmd.push(str);
+
+      cb = function(code, stdout, stderr){
+        retVal = stdout;
+        if(callback)
+          callback(code, retVal, stderr);
+      }
+    }
+
+    this.run(cmd, cb, callback);
+  },
+
   debugprint: function(cmd,args,cb){
     console.log("debug-info: cmd = " + cmd );
     console.log("debug-info: args = " + args );
