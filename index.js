@@ -2,6 +2,8 @@ var join = require('path').join,
     spawn = require('child_process').spawn,
     os = require('os');
 
+var path = require('path');
+
 var OS = os.platform();
 var retVal = "";
 
@@ -74,7 +76,7 @@ var dialogNode = module.exports = {
     {
       cmd.push('cscript');
       cmd.push('//Nologo');
-      cmd.push('msgbox.vbs');
+      cmd.push(path.join(process.cwd(), 'msgbox.vbs'));
       cmd.push('notification');
       cmd.push('information: ' + title);
       cmd.push(str);
@@ -126,7 +128,7 @@ var dialogNode = module.exports = {
 
       cmd.push('cscript');
       cmd.push('//Nologo');
-      cmd.push('msgbox.vbs');
+      cmd.push(path.join(process.cwd(), 'msgbox.vbs'));
       cmd.push('notification');
       cmd.push('warning' + title);
       cmd.push(str);
@@ -176,7 +178,7 @@ var dialogNode = module.exports = {
     {
       cmd.push('cscript');
       cmd.push('//Nologo');
-      cmd.push('msgbox.vbs');
+      cmd.push(path.join(process.cwd(), 'msgbox.vbs'));
       cmd.push('notification');
       cmd.push('error: ' + title);
       cmd.push(str);
@@ -231,7 +233,7 @@ var dialogNode = module.exports = {
     {
       cmd.push('cscript');
       cmd.push('//Nologo');
-      cmd.push('msgbox.vbs')
+      cmd.push(path.join(process.cwd(), 'msgbox.vbs'))
       cmd.push('question');
       cmd.push(title);
       cmd.push(str);
@@ -295,7 +297,7 @@ var dialogNode = module.exports = {
     {
       cmd.push('cscript');
       cmd.push('//Nologo');
-      cmd.push('msgbox.vbs')
+      cmd.push(path.join(process.cwd(), 'msgbox.vbs'))
       cmd.push('entry');
       cmd.push(title);
       cmd.push(str);
@@ -387,7 +389,7 @@ var dialogNode = module.exports = {
     {
       cmd.push('cscript');
       cmd.push('//Nologo');
-      cmd.push('msgbox.vbs')
+      cmd.push(path.join(process.cwd(), 'msgbox.vbs'))
       cmd.push('fileselect');
       cmd.push(title);
       cmd.push(str);
@@ -439,9 +441,10 @@ var dialogNode = module.exports = {
     }
     else if (OS === "win32")
     {
+      import path from "path";
       cmd.push('cscript');
       cmd.push('//Nologo');
-      cmd.push('msgbox.vbs')
+      cmd.push(path.join(process.cwd(), 'msgbox.vbs'))
       cmd.push('folderselect');
       cmd.push(title);
       cmd.push(str);
