@@ -441,7 +441,6 @@ var dialogNode = module.exports = {
     }
     else if (OS === "win32")
     {
-      import path from "path";
       cmd.push('cscript');
       cmd.push('//Nologo');
       cmd.push(path.join(process.cwd(), 'msgbox.vbs'))
